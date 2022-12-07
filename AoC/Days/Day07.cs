@@ -35,7 +35,7 @@ public class Day07 : BaseDay, IDay
                 // directory change
                 var cd = line.Split(" ").Last();
                 if (cd == "..")
-                    current = current.Parent;
+                    current = current.Parent!;
                 else
                     current = current.Children.First(x => x.IsDirectory && x.Name == cd);
             }
@@ -77,11 +77,11 @@ public class Day07 : BaseDay, IDay
 
     private class Item
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
         public ItemType ItemType { get; set; }
         public long Size { get; set; }
         public List<Item> Children { get; set; } = new();
-        public Item Parent { get; set; }
+        public Item? Parent { get; set; }
 
         public bool IsDirectory => ItemType == ItemType.Dir;
         public long TotalSize => Size + Children.Sum(c => c.TotalSize);

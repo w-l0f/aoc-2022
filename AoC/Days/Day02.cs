@@ -50,7 +50,8 @@ public class Day02 : BaseDay, IDay
             'C' => RPS.SCISSOR,
             'X' => RPS.ROCK,
             'Y' => RPS.PAPER,
-            'Z' => RPS.SCISSOR
+            'Z' => RPS.SCISSOR,
+            _ => throw new ArgumentException()
         };
 
     private int GetScore(RPS me, RPS his)
@@ -66,6 +67,7 @@ public class Day02 : BaseDay, IDay
             (RPS.PAPER, RPS.SCISSOR) => 0,
             (RPS.SCISSOR, RPS.PAPER) => 6,
             (RPS.SCISSOR, RPS.ROCK) => 0,
+            _ => throw new ArgumentException()
         };
     }
     
@@ -82,6 +84,7 @@ public class Day02 : BaseDay, IDay
             (RPS.ROCK, 'Z') => 6 + (int)RPS.PAPER,
             (RPS.PAPER, 'Z') => 6 + (int)RPS.SCISSOR,
             (RPS.SCISSOR, 'Z') => 6 + (int)RPS.ROCK,
+            _ => throw new ArgumentException()
         };
     }
 }
