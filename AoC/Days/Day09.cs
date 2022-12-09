@@ -14,7 +14,7 @@ public class Day09 : BaseDay, IDay
         { "U", new Point(0, 1) },
         { "D", new Point(0, -1) },
     };
-    
+
     public object GetSolutionA(string fileName)
     {
         var input = GetInputLines(fileName);
@@ -33,24 +33,20 @@ public class Day09 : BaseDay, IDay
                 if (Math.Abs(head.X - tail.X) <= 1 && Math.Abs(head.Y - tail.Y) <= 1)
                     continue;
 
-                if (head.X != tail.X)
-                {
-                    tail.X += (head.X > tail.X)
-                        ? 1
-                        : -1;
-                }
-                
-                if (head.Y != tail.Y)
-                {
-                    tail.Y += (head.Y > tail.Y)
-                        ? 1
-                        : -1;
-                }
+                tail.Offset(GetMovement(head.X, tail.X), GetMovement(head.Y, tail.Y));
+
+                int GetMovement(int v1, int v2)
+                    => (v1, v2) switch
+                    {
+                        var (x, y) when (x > y) => 1,
+                        var (x, y) when (x < y) => -1,
+                        _ => 0
+                    };
 
                 v.Add(tail);
             }
-            
         }
+
         return v.Count;
     }
 
@@ -71,26 +67,24 @@ public class Day09 : BaseDay, IDay
 
                 for (var j = 1; j < rope.Length; j++)
                 {
-                    if (Math.Abs(rope[j].X - rope[j-1].X) <= 1 && Math.Abs(rope[j].Y - rope[j-1].Y) <= 1)
+                    if (Math.Abs(rope[j].X - rope[j - 1].X) <= 1 && Math.Abs(rope[j].Y - rope[j - 1].Y) <= 1)
                         continue;
-                    
-                    if (rope[j].X != rope[j-1].X)
-                    {
-                        rope[j].X += (rope[j-1].X> rope[j].X)
-                            ? 1
-                            : -1;
-                    }
-                
-                    if (rope[j-1].Y != rope[j].Y)
-                    {
-                        rope[j].Y += (rope[j-1].Y> rope[j].Y)
-                            ? 1
-                            : -1;
-                    }
+
+                    rope[j].Offset(GetMovement(rope[j - 1].X, rope[j].X), GetMovement(rope[j - 1].Y, rope[j].Y));
+
+                    int GetMovement(int v1, int v2)
+                        => (v1, v2) switch
+                        {
+                            var (x, y) when (x > y) => 1,
+                            var (x, y) when (x < y) => -1,
+                            _ => 0
+                        };
                 }
+
                 v.Add(rope[9]);
             }
         }
+
         return v.Count;
     }
 }
