@@ -85,4 +85,26 @@ public class Tests
         Assert.That(day.GetSolutionB($"{day.GetDay():00}e.txt"), Is.EqualTo(24933642));
         TestContext.WriteLine($"Solution {day.GetDay()}B:" + day.GetSolutionB($"{day.GetDay():00}.txt"));
     }
+    
+    [Test]
+    public void Day8()
+    {
+        var day = new Day08();
+        Assert.That(day.GetSolutionA($"{day.GetDay():00}e.txt"), Is.EqualTo(21));
+        TestContext.WriteLine($"Solution {day.GetDay()}A:" + day.GetSolutionA($"{day.GetDay():00}.txt"));
+        
+        Assert.That(day.GetSolutionB($"{day.GetDay():00}e.txt"), Is.EqualTo(8));
+        TestContext.WriteLine($"Solution {day.GetDay()}B:" + day.GetSolutionB($"{day.GetDay():00}.txt"));
+    }
+    
+    [Test]
+    public void Day9()
+    {
+        var day = new Day09();
+        Assert.That(day.GetSolutionA($"{day.GetDay():00}e.txt"), Is.EqualTo(13));
+        TestContext.WriteLine($"Solution {day.GetDay()}A:" + day.GetSolutionA($"{day.GetDay():00}.txt"));
+        
+        Assert.That(day.GetSolutionB($"{day.GetDay():00}e2.txt"), Is.EqualTo(36));
+        TestContext.WriteLine($"Solution {day.GetDay()}B:" + day.GetSolutionB($"{day.GetDay():00}.txt"));
+    }
 }
